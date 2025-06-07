@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BLACKWOOD INC. - Unleash Your Darkest Fetishes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"/>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle 150px at 75% 30%, #151515, #060606);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .main-content {
+            margin: 20px auto;
+            max-width: 1152px;
+        }
+
+        .navbar {
+            padding: 1px;
+            border-radius: 45px;
+            background: linear-gradient(to right, #666666, #000000, #666666);
+        }
+
+        .navbar .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 45px;
+            background: linear-gradient(to right, #030202, #464646, #030202);
+            padding: 16px 25px;
+            color: white;
+        }
+
+        .navbar .left h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .navbar .center a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .center a:hover {
+            color: #ccc;
+        }
+
+        .navbar .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #222;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .navbar .right input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .navbar .right i {
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                margin: 20px;
+            }
+
+            .navbar .center a {
+                margin: 0 8px;
+            }
+
+            .navbar .right input {
+                width: 100px;
+            }
+        }
+
+        .hero {
+            margin-top: 20px;
+            padding: 1px;
+            border-radius: 45px;
+            background: linear-gradient(to right, #666666, #000000, #666666);
+        }
+
+        .hero .content {
+            display: flex;
+            height: 500px;
+            align-items: stretch;
+            justify-items: end;
+            border-radius: 45px;
+            background: url('img/hero-section-background.png') no-repeat center center;
+            background-size: 110%;
+            padding: 16px 25px;
+            color: white;
+            overflow: hidden;
+            transition: background-position 0.3s ease;
+        }
+
+        .hero-left {
+            display: flex;
+            z-index: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            padding-right: 40px;
+            padding-left: 60px;
+            box-sizing: border-box;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .hero-features {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+            text-align: left;
+            color: #ddd;
+            font-size: 1rem;
+        }
+
+        .hero-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .hero-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #fff;
+        }
+
+        .hero-button {
+            background: #ffffff10;
+            border: 1px solid white;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .hero-button:hover {
+            background: #ffffff25;
+        }
+
+        .hero-right {
+            right: 0;
+            height: 550px;
+            position: absolute;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            overflow: hidden;
+            margin-bottom: -20px;
+        }
+
+        .hero-right img {
+            height: 100%;
+            margin-top: 0px;
+            border-radius: 0 0 45px 0;
+            object-fit: cover;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 45px;
+        }
+
+        .carousel-slide {
+            display: none;
+            position: relative;
+            animation: fade 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .product-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .product-card {
+            flex: 1;
+            min-width: 240px;
+            max-width: 270px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            border: 1px solid #666666;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #66666650;
+        }
+
+        .product-card-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card-title {
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .product-card-details {
+            font-size: 0.85rem;
+            color: #bbb;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .product-card-details.active {
+            display: block;
+        }
+
+        .product-card-details i {
+            margin-right: 8px;
+            color: #fff;
+        }
+
+        .product-card-description {
+            font-size: 0.8rem;
+            color: #ddd;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-style: italic;
+        }
+
+        .product-card-button {
+            background: #ffffff10;
+            border: 1px solid white;
+            color: white;
+            padding: 8px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .product-card-button:hover {
+            background: #ffffff25;
+        }
+
+        @media (max-width: 1024px) {
+            .product-card {
+                min-width: 200px;
+                max-width: 400px;
+            }
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .product-image-wrapper img.profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .flag-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 30px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 3px;
+        }
+
+        .tags {
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #eee;
+            color: #333;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin: 4px 4px 0 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .panel {
+            background: #222222;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444444;
+        }
+
+        .panel-header {
+            font-size: 0.9rem;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-header::after {
+            content: '\f078'; /* FontAwesome chevron-down */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            transition: transform 0.3s ease;
+        }
+
+        .panel-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .fetish-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #ccc;
+            font-size: 0.8rem;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #666666;
+        }
+    </style>
+</head>
+<body>
+<div class="main-content">
+    <div class="navbar">
+        <div class="content">
+            <div class="left">
+                <h1>Blackwood Inc.</h1>
+            </div>
+            <div class="center">
+                <a href="#">Home</a>
+                <a href="#">Collections</a>
+                <a href="#">Access</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Search..."/>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div style="background-color: black; border-radius: 45px;">
+            <div class="carousel" id="carousel-container"></div>
+        </div>
+    </div>
+
+    <template id="carousel-slide-template">
+        <div class="carousel-slide">
+            <div class="content">
+                <div class="hero-left">
+                    <div class="hero-left-inner">
+                        <h1 class="hero-title"></h1>
+                        <p class="hero-description"></p>
+                        <ul class="hero-features"></ul>
+                        <button class="hero-button"></button>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <img class="hero-img"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div id="collection-header" style="margin-top: 50px; margin-bottom: 30px;">
+        <h2 style="color: white; font-size: 2rem; margin: 0; text-transform: uppercase;">Collection Name</h2>
+        <div style="height: 2px; width: 80px; background-color: white; margin: 8px 0;"></div>
+        <p id="collection-subheader" style="color: #ccc; font-size: 1rem; margin: 0; max-width: 600px;">Collection
+            description here.</p>
+    </div>
+
+    <div id="product-container" class="product-cards"></div>
+
+    <div class="footer">
+        <p>© 2025 Blackwood Inc. All materials are works of fiction and intended for entertainment purposes only.</p>
+    </div>
+</div>
+
+<template id="product-card-template">
+    <div class="product-card">
+        <div class="product-image-wrapper">
+            <img class="profile-img"/>
+            <img class="flag-icon"/>
+        </div>
+        <div class="product-card-content">
+            <h2 class="product-card-title"></h2>
+
+            <div class="product-card-description"></div>
+            <div class="panel">
+                <div class="panel-header">Vital Stats</div>
+                <div class="product-card-details">
+                    <p class="age"></p>
+                    <p class="ethnicity"></p>
+                    <p class="background"></p>
+                    <p class="height"></p>
+                    <p class="weight"></p>
+                    <p class="measurements"></p>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Fetish Profile</div>
+                <div class="product-card-details">
+                    <p class="pussy-type"></p>
+                    <p class="sexual-preference"></p>
+                    <p class="endurance"></p>
+                    <div class="fetish-tags"></div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header active">Ownership</div>
+                <div class="product-card-details active">
+                    <p class="owners"></p>
+                    <p class="price"></p>
+                </div>
+            </div>
+
+            <div class="tags"></div>
+            <button class="product-card-button">Buy Now</button>
+        </div>
+    </div>
+</template>
+
+<script>
+    const heroSlides = [
+        {
+            title: "Defile Her Veiled Virtue",
+            description: "Slip into our Arabic hijabi skinsuits and ravage the taboo, draping yourself in submissive, exotic flesh that begs to be violated.",
+            features: [
+                "Exotic desert whore aesthetic for depraved fantasies",
+                "Tight fit to flaunt submissive, breedable curves",
+                "Dominate her culture with every sinful step"
+            ],
+            buttonText: "Ravage Her Forbidden Body",
+            image: "img/hijabi.png",
+            alt: "Hijabi Skinsuit",
+            background: "url('img/hero-section-background.png')"
+        },
+        {
+            title: "Enslave the Perfect Housewife",
+            description: "Become the ultimate subservient slut with our housewife skinsuits, built to serve, please, and be used in every filthy way imaginable.",
+            features: [
+                "Prime white breeder body for total submission",
+                "Curves crafted for rough, degrading use",
+                "Live the fantasy of a broken domestic bitch"
+            ],
+            buttonText: "Own Her Pathetic Soul",
+            image: "img/housewife.png",
+            alt: "Housewife Skinsuit",
+            background: "url('img/hero-section-background.png')"
+        },
+        {
+            title: "Defile Her Pregnant Womb",
+            description: "Our Black pregnant skinsuits let you defile sacred motherhood, with lush, fertile curves that scream for perverse exploitation.",
+            features: [
+                "Voluptuous Black breeder body for taboo thrills",
+                "Swollen curves to degrade and dominate",
+                "Perfect for sick, primal fetishes"
+            ],
+            buttonText: "Violate Her Fertile Flesh",
+            image: "img/pregnant.png",
+            alt: "Pregnant Skinsuit",
+            background: "url('img/hero-section-background.png')"
+        }
+    ];
+
+    const products = [
+        {
+            name: "Alina",
+            age: 32,
+            ethnicity: "Russian",
+            background: "Twitch Streamer",
+            height: { feet: "5'6\"", meters: "1.68 m" },
+            weight: { pounds: "130 lbs", kilograms: "59 kg" },
+            measurements: { inches: "34B-26-36", cm: "86-66-91" },
+            pussyType: "Shaved, Tight",
+            sexualPreference: "Bisexual",
+            endurance: "High Stamina",
+            kinks: ["Public Humiliation", "Roleplay", "Voyeurism"],
+            personality: ["Charismatic", "Submissive", "Playful"],
+            appearance: ["Fair skin", "Brown hair", "Normal body build"],
+            previousOwners: 2,
+            price: "$15,999",
+            image: "img/russian_wives/1.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Alina teased legions of desperate viewers on Twitch, her brown hair bouncing as she flaunted her tight 34B-26-36 curves in skimpy outfits, her shaved pussy begging for tips and attention. Her skin lets you hijack her streamer slut persona, perfect for degrading her in front of a virtual audience, forcing her into vile, voyeuristic acts for their sick pleasure."
+        },
+        {
+            name: "Vika",
+            age: 35,
+            ethnicity: "Russian",
+            background: "Social Media Influencer",
+            height: { feet: "5'8\"", meters: "1.73 m" },
+            weight: { pounds: "125 lbs", kilograms: "57 kg" },
+            measurements: { inches: "36C-24-35", cm: "91-61-89" },
+            pussyType: "Waxed, Plump",
+            sexualPreference: "Heterosexual",
+            endurance: "Moderate Stamina",
+            kinks: ["Exhibitionism", "Bondage", "Anal Play"],
+            personality: ["Seductive", "Confident", "Kinky"],
+            appearance: ["Tanned skin", "Black hair", "Fit"],
+            previousOwners: 1,
+            price: "$13,599",
+            image: "img/russian_wives/2.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Vika built an empire on Instagram, her tanned, fit 36C-24-35 body and waxed, plump pussy posing in barely-there lingerie for perverted followers. Her skin traps you in her influencer whore flesh, ideal for exploiting her fame in degrading, public displays of kinky submission to satisfy the darkest urges."
+        },
+        {
+            name: "Alexandra",
+            age: 21,
+            ethnicity: "Russian",
+            background: "University Student",
+            height: { feet: "5'4\"", meters: "1.63 m" },
+            weight: { pounds: "110 lbs", kilograms: "50 kg" },
+            measurements: { inches: "32A-22-34", cm: "81-56-86" },
+            pussyType: "Trimmed, Petite",
+            sexualPreference: "Curious",
+            endurance: "Low Stamina",
+            kinks: ["Teacher Fantasies", "Gangbang", "Corruption"],
+            personality: ["Innocent", "Submissive", "Corruptible"],
+            appearance: ["Fair skin", "Blonde hair", "Green eyes", "Skinny"],
+            previousOwners: 0,
+            price: "$2,799",
+            image: "img/russian_wives/3.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Alexandra was the naive university girl, her green eyes and blonde hair hiding filthy fantasies behind her petite 32A-22-34 frame and trimmed pussy, studying late while dreaming of violation. Her skin lets you corrupt her innocent facade, turning her into a depraved coed for taboo classroom gangbangs or perverse professor fantasies."
+        },
+        {
+            name: "Mila",
+            age: 18,
+            ethnicity: "Russian",
+            background: "Oligarch’s Daughter",
+            height: { feet: "5'2\"", meters: "1.57 m" },
+            weight: { pounds: "105 lbs", kilograms: "48 kg" },
+            measurements: { inches: "32B-23-33", cm: "81-58-84" },
+            pussyType: "Shaved, Delicate",
+            sexualPreference: "Bisexual",
+            endurance: "High Stamina",
+            kinks: ["Pet Play", "Spanking", "Elite Orgies"],
+            personality: ["Spoiled", "Submissive", "Exotic"],
+            appearance: ["Fair skin", "Dark hair", "Petite"],
+            previousOwners: 0,
+            price: "$100,000",
+            image: "img/russian_wives/4.png",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Mila lounged in luxury as an oligarch’s daughter, her pouty lips and petite 32B-23-33 body with a delicate shaved pussy spoiled by wealth, secretly craving rough handling at elite orgies. Her skin lets you defile her pampered flesh, transforming her into a submissive toy for sadistic, high-society debauchery and forbidden exploitation."
+        },
+        {
+            name: "Yulia",
+            age: 20,
+            ethnicity: "Russian",
+            background: "Cosplayer",
+            height: { feet: "5'3\"", meters: "1.60 m" },
+            weight: { pounds: "115 lbs", kilograms: "52 kg" },
+            measurements: { inches: "34B-25-35", cm: "86-64-89" },
+            pussyType: "Waxed, Tight",
+            sexualPreference: "Pansexual",
+            endurance: "Moderate Stamina",
+            kinks: ["Cosplay Fetish", "Group Play", "Humiliation"],
+            personality: ["Playful", "Submissive", "Creative"],
+            appearance: ["Fair skin", "Blue and black hair", "Petite"],
+            previousOwners: 0,
+            price: "$8,699",
+            image: "img/russian_wives/5.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Yulia pranced at cons in skimpy cosplay, her blue and black hair and petite 34B-25-35 frame with a waxed, tight pussy drawing lecherous stares from creepy fans she teased. Her skin lets you become her playful, costumed slut, perfect for degrading in perverse anime-themed gangbangs or taboo convention hookups."
+        },
+        {
+            name: "Tanya",
+            age: 27,
+            ethnicity: "Russian",
+            background: "Sales Employee at Blackwood Inc.",
+            height: { feet: "5'5\"", meters: "1.65 m" },
+            weight: { pounds: "120 lbs", kilograms: "54 kg" },
+            measurements: { inches: "34A-24-34", cm: "86-61-86" },
+            pussyType: "Shaved, Plump",
+            sexualPreference: "Heterosexual",
+            endurance: "High Stamina",
+            kinks: ["Office Domination", "Degradation", "Foot Worship"],
+            personality: ["Ambitious", "Submissive", "Charming"],
+            appearance: ["Fair skin", "Red hair", "Skinny"],
+            previousOwners: 2,
+            price: "$11,499",
+            image: "img/russian_wives/6.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Tanya flirted her way through sales at Blackwood Inc., her red hair and skinny 34A-24-34 body with a plump shaved pussy bending over desks to close deals, hiding a submissive core. Her skin lets you exploit her corporate bitch persona, turning her into a degraded office slave for sadistic boardroom violations."
+        },
+        {
+            name: "Anna",
+            age: 25,
+            ethnicity: "Russian",
+            background: "Escort",
+            height: { feet: "5'7\"", meters: "1.70 m" },
+            weight: { pounds: "135 lbs", kilograms: "61 kg" },
+            measurements: { inches: "36D-26-38", cm: "91-66-97" },
+            pussyType: "Trimmed, Juicy",
+            sexualPreference: "Bisexual",
+            endurance: "Extreme Stamina",
+            kinks: ["Rough Sex", "Cum Play", "Degradation"],
+            personality: ["Seductive", "Voluptuous", "Degradable"],
+            appearance: ["Tanned skin", "Dark hair", "Curvy"],
+            previousOwners: 7,
+            price: "$1,799",
+            image: "img/russian_wives/7.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Anna sold her curvy, tanned 36D-26-38 body with a juicy trimmed pussy as a Moscow escort, her dark hair and pouty lips servicing rich clients in seedy hotel rooms, thriving on degradation. Her skin lets you inhabit her whorish flesh, perfect for turning her into a cum-drenched toy for the vilest, taboo paid encounters."
+        },
+        {
+            name: "Eugenia",
+            age: 22,
+            ethnicity: "Russian",
+            background: "Unemployed Girlfriend",
+            height: { feet: "5'3\"", meters: "1.60 m" },
+            weight: { pounds: "112 lbs", kilograms: "51 kg" },
+            measurements: { inches: "32B-24-34", cm: "81-61-86" },
+            pussyType: "Shaved, Delicate",
+            sexualPreference: "Heterosexual",
+            endurance: "Moderate Stamina",
+            kinks: ["Pet Play", "Domestic Servitude", "Light Bondage"],
+            personality: ["Loyal", "Submissive", "Cute"],
+            appearance: ["Fair skin", "Blonde hair with pink tips", "Petite"],
+            previousOwners: 0,
+            price: "$5,599",
+            image: "img/russian_wives/8.webp",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Eugenia was the clingy girlfriend, her blonde hair with pink tips and petite 32B-24-34 body with a delicate shaved pussy always eager to please her man, hiding filthy desires behind her cute smile. Her skin lets you defile her loyal devotion, transforming her into a submissive pet for perverse, domestic degradation fantasies."
+        },
+        {
+            name: "Ekaterina",
+            age: 40,
+            ethnicity: "Russian",
+            background: "Politician",
+            height: { feet: "5'9\"", meters: "1.75 m" },
+            weight: { pounds: "140 lbs", kilograms: "64 kg" },
+            measurements: { inches: "34C-26-36", cm: "86-66-91" },
+            pussyType: "Waxed, Tight",
+            sexualPreference: "Bisexual",
+            endurance: "High Stamina",
+            kinks: ["Power Play", "Humiliation", "Group Domination"],
+            personality: ["Dominant", "Powerful", "Seductive"],
+            appearance: ["Fair skin", "Blonde hair", "Slender"],
+            previousOwners: 3,
+            price: "$65,899",
+            image: "img/russian_wives/9.png",
+            flag: "https://flagcdn.com/w40/ru.png",
+            description: "Ekaterina commanded boardrooms and backroom deals as a ruthless politician, her pretty 34C-26-36 frame with a waxed, tight pussy masking a cruel streak while seducing allies and enemies alike. Her skin lets you seize her dominant persona, perfect for breaking her powerful facade in degrading, taboo political scandals and sadistic power-play orgies."
+        }
+    ];
+
+    const collectionName = "Russian Wives";
+    const collectionDescription = "Dive into a depraved collection of Russian women, crafted for men craving to exploit sultry Russian beauties in every perverse fantasy.";
+
+    document.querySelector("#collection-header h2").textContent = collectionName;
+    document.getElementById("collection-subheader").textContent = collectionDescription;
+
+    if (!collectionName?.trim()) {
+        document.getElementById("collection-header").style.display = "none";
+    }
+
+    const carouselContainer = document.getElementById("carousel-container");
+    const slideTemplate = document.getElementById("carousel-slide-template");
+
+    heroSlides.forEach((slide, index) => {
+        const clone = slideTemplate.content.cloneNode(true);
+
+        clone.querySelector(".hero-title").textContent = slide.title;
+        clone.querySelector(".hero-description").textContent = slide.description;
+        clone.querySelector(".hero-button").textContent = slide.buttonText;
+        clone.querySelector(".hero-img").src = slide.image;
+        clone.querySelector(".hero-img").alt = slide.alt;
+        clone.querySelector(".content").style.backgroundImage = slide.background;
+
+        const featuresList = clone.querySelector(".hero-features");
+        slide.features.forEach(feature => {
+            const li = document.createElement("li");
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+
+        if (index === 0) {
+            clone.querySelector(".carousel-slide").classList.add("active");
+        }
+
+        carouselContainer.appendChild(clone);
+    });
+
+    const productContainer = document.getElementById("product-container");
+    const productTemplate = document.getElementById("product-card-template");
+
+    products.forEach(product => {
+        const clone = productTemplate.content.cloneNode(true);
+
+        clone.querySelector(".profile-img").src = product.image;
+        clone.querySelector(".profile-img").alt = `${product.name} Skinsuit`;
+
+        clone.querySelector(".flag-icon").src = product.flag;
+        clone.querySelector(".flag-icon").alt = `${product.ethnicity} Flag`;
+
+        clone.querySelector(".product-card-title").textContent = product.name;
+        clone.querySelector(".age").innerHTML = `<i class="fas fa-user"></i> Age: ${product.age}`;
+        clone.querySelector(".ethnicity").innerHTML = `<i class="fas fa-globe"></i> Ethnicity: ${product.ethnicity}`;
+        clone.querySelector(".background").innerHTML = `<i class="fas fa-briefcase"></i> Background: ${product.background}`;
+        clone.querySelector(".height").innerHTML = `<i class="fas fa-ruler-vertical"></i> Height: ${product.height.feet} (${product.height.meters})`;
+        clone.querySelector(".weight").innerHTML = `<i class="fas fa-weight"></i> Weight: ${product.weight.pounds} (${product.weight.kilograms})`;
+        clone.querySelector(".measurements").innerHTML = `<i class="fas fa-ruler-combined"></i> Measurements: ${product.measurements.inches} (${product.measurements.cm} cm)`;
+        clone.querySelector(".pussy-type").innerHTML = `<i class="fas fa-venus"></i> Pussy Type: ${product.pussyType}`;
+        clone.querySelector(".sexual-preference").innerHTML = `<i class="fas fa-heart"></i> Sexual Preference: ${product.sexualPreference}`;
+        clone.querySelector(".endurance").innerHTML = `<i class="fas fa-bolt"></i> Endurance: ${product.endurance}`;
+        clone.querySelector(".owners").innerHTML = `<i class="fas fa-history"></i> Previous Owners: ${product.previousOwners}`;
+        clone.querySelector(".price").innerHTML = `<i class="fas fa-dollar-sign"></i> Price: ${product.price}`;
+        clone.querySelector(".product-card-description").textContent = product.description;
+
+        const fetishTagsContainer = clone.querySelector(".fetish-tags");
+        product.kinks.forEach(kink => {
+            const tagElement = document.createElement("span");
+            tagElement.className = "tag";
+            tagElement.textContent = kink;
+            fetishTagsContainer.appendChild(tagElement);
+        });
+
+        const tagsContainer = clone.querySelector(".tags");
+        product.personality.forEach(tag => {
+            const tagElement = document.createElement("span");
+            tagElement.className = "tag";
+            tagElement.textContent = tag;
+            tagsContainer.appendChild(tagElement);
+        });
+
+        productContainer.appendChild(clone);
+    });
+
+    // Collapsible panel functionality
+    document.querySelectorAll('.panel-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const details = header.nextElementSibling;
+            const isActive = details.classList.contains('active');
+            details.classList.toggle('active', !isActive);
+            header.classList.toggle('active', !isActive);
+        });
+    });
+
+    // Animations
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000);
+
+    document.querySelectorAll('.carousel-slide .content').forEach((heroContent) => {
+        heroContent.addEventListener('mousemove', (e) => {
+            const rect = heroContent.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            const moveX = (xPercent - 50) * 0.1;
+            const moveY = (yPercent - 50) * 0.1;
+            heroContent.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
+        });
+
+        heroContent.addEventListener('mouseleave', () => {
+            heroContent.style.backgroundPosition = 'center center';
+        });
+    });
+</script>
+</body>
+
+</html>
