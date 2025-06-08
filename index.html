@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BLACKWOOD INC. - Unleash Your Darkest Fetishes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"/>
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 
     <style>
         html,
@@ -237,7 +237,7 @@
             margin-top: 40px;
             flex-wrap: wrap;
             flex-direction: row;
-            align-items: stretch;
+            align-items: flex-start;
         }
 
         .product-card {
@@ -384,7 +384,8 @@
         }
 
         .panel-header::after {
-            content: '\f078'; /* FontAwesome chevron-down */
+            content: '\f078';
+            /* FontAwesome chevron-down */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             transition: transform 0.3s ease;
@@ -408,154 +409,272 @@
             padding: 20px 0;
             border-top: 1px solid #666666;
         }
+
+        .hero-underlay {
+            background-color: black;
+            border-radius: 45px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                border-radius: 0;
+            }
+
+            .hero-underlay {
+                border-radius: 0;
+            }
+
+            .hero .content {
+                flex-direction: column;
+                height: auto;
+                background-size: cover;
+                padding: 20px;
+                padding-bottom: 0;
+            }
+
+            .hero-left {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-description,
+            .hero-features,
+            .hero-button {
+                font-size: 1rem;
+            }
+
+            .hero-right {
+                position: relative;
+                height: auto;
+                margin: 20px 0 0;
+                justify-content: center;
+            }
+
+            .hero-right img {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: contain;
+                border-radius: 20px;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mobile-menu a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #222;
+        }
+
+        .mobile-menu.open {
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+
+            .navbar .center,
+            .navbar .right {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                margin-right: 15px;
+            }
+
+            .navbar .content {
+                justify-content: flex-start;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
+
 <body>
-<div class="main-content">
-    <div class="navbar">
-        <div class="content">
-            <div class="left">
-                <h1>Blackwood Inc.</h1>
+    <div class="main-content">
+        <div class="navbar">
+            <div class="content">
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="left">
+                    <h1>Blackwood Inc.</h1>
+                </div>
+                <div class="center">
+                    <a href="#">Home</a>
+                    <a href="#">Collections</a>
+                    <a href="#">Access</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="right">
+                    <input type="text" placeholder="Search..." />
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
-            <div class="center">
+            <div class="mobile-menu" id="mobileMenu">
                 <a href="#">Home</a>
                 <a href="#">Collections</a>
                 <a href="#">Access</a>
                 <a href="#">Support</a>
             </div>
-            <div class="right">
-                <input type="text" placeholder="Search..."/>
-                <i class="fas fa-search"></i>
+
+        </div>
+
+        <div class="hero">
+            <div class="hero-underlay">
+                <div class="carousel" id="carousel-container"></div>
             </div>
         </div>
-    </div>
 
-    <div class="hero">
-        <div style="background-color: black; border-radius: 45px;">
-            <div class="carousel" id="carousel-container"></div>
+        <template id="carousel-slide-template">
+            <div class="carousel-slide">
+                <div class="content">
+                    <div class="hero-left">
+                        <div class="hero-left-inner">
+                            <h1 class="hero-title"></h1>
+                            <p class="hero-description"></p>
+                            <ul class="hero-features"></ul>
+                            <button class="hero-button"></button>
+                        </div>
+                    </div>
+                    <div class="hero-right">
+                        <img class="hero-img" />
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <div id="collection-header" style="margin-top: 50px; margin-bottom: 30px;">
+            <h2 style="color: white; font-size: 2rem; margin: 0; text-transform: uppercase;">Collection Name</h2>
+            <div style="height: 2px; width: 80px; background-color: white; margin: 8px 0;"></div>
+            <p id="collection-subheader" style="color: #ccc; font-size: 1rem; margin: 0; max-width: 600px;">Collection
+                description here.</p>
+        </div>
+
+        <div id="product-container" class="product-cards"></div>
+
+        <div class="footer">
+            <p>© 2025 Blackwood Inc. All materials are works of fiction and intended for entertainment purposes only.
+            </p>
         </div>
     </div>
 
-    <template id="carousel-slide-template">
-        <div class="carousel-slide">
-            <div class="content">
-                <div class="hero-left">
-                    <div class="hero-left-inner">
-                        <h1 class="hero-title"></h1>
-                        <p class="hero-description"></p>
-                        <ul class="hero-features"></ul>
-                        <button class="hero-button"></button>
+    <template id="product-card-template">
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img class="profile-img" />
+                <img class="flag-icon" />
+            </div>
+            <div class="product-card-content">
+                <h2 class="product-card-title"></h2>
+
+                <div class="product-card-description"></div>
+                <div class="panel">
+                    <div class="panel-header">Vital Stats</div>
+                    <div class="product-card-details">
+                        <p class="age"></p>
+                        <p class="ethnicity"></p>
+                        <p class="background"></p>
+                        <p class="height"></p>
+                        <p class="weight"></p>
+                        <p class="measurements"></p>
                     </div>
                 </div>
-                <div class="hero-right">
-                    <img class="hero-img"/>
+                <div class="panel">
+                    <div class="panel-header">Fetish Profile</div>
+                    <div class="product-card-details">
+                        <p class="pussy-type"></p>
+                        <p class="sexual-preference"></p>
+                        <div class="fetish-tags"></div>
+                    </div>
                 </div>
+                <div class="panel">
+                    <div class="panel-header active">Ownership</div>
+                    <div class="product-card-details active">
+                        <p class="owners"></p>
+                        <p class="price"></p>
+                    </div>
+                </div>
+
+                <div class="tags"></div>
+                <button class="product-card-button">Buy Now</button>
             </div>
         </div>
     </template>
 
-    <div id="collection-header" style="margin-top: 50px; margin-bottom: 30px;">
-        <h2 style="color: white; font-size: 2rem; margin: 0; text-transform: uppercase;">Collection Name</h2>
-        <div style="height: 2px; width: 80px; background-color: white; margin: 8px 0;"></div>
-        <p id="collection-subheader" style="color: #ccc; font-size: 1rem; margin: 0; max-width: 600px;">Collection
-            description here.</p>
-    </div>
+    <script>
+        const heroSlides = [
+            {
+                title: "Defile Her Veiled Virtue",
+                description: "Slip into our Arabic hijabi skinsuits and ravage the taboo, draping yourself in submissive, exotic flesh that begs to be violated.",
+                features: [
+                    "Exotic desert whore aesthetic for depraved fantasies",
+                    "Tight fit to flaunt submissive, breedable curves",
+                    "Dominate her culture with every sinful step"
+                ],
+                buttonText: "Ravage Her Forbidden Body",
+                image: "img/hijabi.png",
+                alt: "Hijabi Skinsuit",
+                background: "url('img/hero-section-background.png')"
+            },
+            {
+                title: "Enslave the Perfect Housewife",
+                description: "Become the ultimate subservient slut with our housewife skinsuits, built to serve, please, and be used in every filthy way imaginable.",
+                features: [
+                    "Prime white breeder body for total submission",
+                    "Curves crafted for rough, degrading use",
+                    "Live the fantasy of a broken domestic bitch"
+                ],
+                buttonText: "Own Her Pathetic Soul",
+                image: "img/housewife.png",
+                alt: "Housewife Skinsuit",
+                background: "url('img/hero-section-background.png')"
+            },
+            {
+                title: "Defile Her Pregnant Womb",
+                description: "Our Black pregnant skinsuits let you defile sacred motherhood, with lush, fertile curves that scream for perverse exploitation.",
+                features: [
+                    "Voluptuous Black breeder body for taboo thrills",
+                    "Swollen curves to degrade and dominate",
+                    "Perfect for sick, primal fetishes"
+                ],
+                buttonText: "Violate Her Fertile Flesh",
+                image: "img/pregnant.png",
+                alt: "Pregnant Skinsuit",
+                background: "url('img/hero-section-background.png')"
+            }
+        ];
 
-    <div id="product-container" class="product-cards"></div>
-
-    <div class="footer">
-        <p>© 2025 Blackwood Inc. All materials are works of fiction and intended for entertainment purposes only.</p>
-    </div>
-</div>
-
-<template id="product-card-template">
-    <div class="product-card">
-        <div class="product-image-wrapper">
-            <img class="profile-img"/>
-            <img class="flag-icon"/>
-        </div>
-        <div class="product-card-content">
-            <h2 class="product-card-title"></h2>
-
-            <div class="product-card-description"></div>
-            <div class="panel">
-                <div class="panel-header">Vital Stats</div>
-                <div class="product-card-details">
-                    <p class="age"></p>
-                    <p class="ethnicity"></p>
-                    <p class="background"></p>
-                    <p class="height"></p>
-                    <p class="weight"></p>
-                    <p class="measurements"></p>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-header">Fetish Profile</div>
-                <div class="product-card-details">
-                    <p class="pussy-type"></p>
-                    <p class="sexual-preference"></p>
-                    <p class="endurance"></p>
-                    <div class="fetish-tags"></div>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-header active">Ownership</div>
-                <div class="product-card-details active">
-                    <p class="owners"></p>
-                    <p class="price"></p>
-                </div>
-            </div>
-
-            <div class="tags"></div>
-            <button class="product-card-button">Buy Now</button>
-        </div>
-    </div>
-</template>
-
-<script>
-    const heroSlides = [
-        {
-            title: "Defile Her Veiled Virtue",
-            description: "Slip into our Arabic hijabi skinsuits and ravage the taboo, draping yourself in submissive, exotic flesh that begs to be violated.",
-            features: [
-                "Exotic desert whore aesthetic for depraved fantasies",
-                "Tight fit to flaunt submissive, breedable curves",
-                "Dominate her culture with every sinful step"
-            ],
-            buttonText: "Ravage Her Forbidden Body",
-            image: "img/hijabi.png",
-            alt: "Hijabi Skinsuit",
-            background: "url('img/hero-section-background.png')"
-        },
-        {
-            title: "Enslave the Perfect Housewife",
-            description: "Become the ultimate subservient slut with our housewife skinsuits, built to serve, please, and be used in every filthy way imaginable.",
-            features: [
-                "Prime white breeder body for total submission",
-                "Curves crafted for rough, degrading use",
-                "Live the fantasy of a broken domestic bitch"
-            ],
-            buttonText: "Own Her Pathetic Soul",
-            image: "img/housewife.png",
-            alt: "Housewife Skinsuit",
-            background: "url('img/hero-section-background.png')"
-        },
-        {
-            title: "Defile Her Pregnant Womb",
-            description: "Our Black pregnant skinsuits let you defile sacred motherhood, with lush, fertile curves that scream for perverse exploitation.",
-            features: [
-                "Voluptuous Black breeder body for taboo thrills",
-                "Swollen curves to degrade and dominate",
-                "Perfect for sick, primal fetishes"
-            ],
-            buttonText: "Violate Her Fertile Flesh",
-            image: "img/pregnant.png",
-            alt: "Pregnant Skinsuit",
-            background: "url('img/hero-section-background.png')"
-        }
-    ];
-
-    const products = [
+        const products = [
         {
             name: "Alina",
             age: 32,
@@ -566,7 +685,6 @@
             measurements: { inches: "34B-26-36", cm: "86-66-91" },
             pussyType: "Shaved, Tight",
             sexualPreference: "Bisexual",
-            endurance: "High Stamina",
             kinks: ["Public Humiliation", "Roleplay", "Voyeurism"],
             personality: ["Charismatic", "Submissive", "Playful"],
             appearance: ["Fair skin", "Brown hair", "Normal body build"],
@@ -586,7 +704,6 @@
             measurements: { inches: "36C-24-35", cm: "91-61-89" },
             pussyType: "Waxed, Plump",
             sexualPreference: "Heterosexual",
-            endurance: "Moderate Stamina",
             kinks: ["Exhibitionism", "Bondage", "Anal Play"],
             personality: ["Seductive", "Confident", "Kinky"],
             appearance: ["Tanned skin", "Black hair", "Fit"],
@@ -606,7 +723,6 @@
             measurements: { inches: "32A-22-34", cm: "81-56-86" },
             pussyType: "Trimmed, Petite",
             sexualPreference: "Curious",
-            endurance: "Low Stamina",
             kinks: ["Teacher Fantasies", "Gangbang", "Corruption"],
             personality: ["Innocent", "Submissive", "Corruptible"],
             appearance: ["Fair skin", "Blonde hair", "Green eyes", "Skinny"],
@@ -626,7 +742,6 @@
             measurements: { inches: "32B-23-33", cm: "81-58-84" },
             pussyType: "Shaved, Delicate",
             sexualPreference: "Bisexual",
-            endurance: "High Stamina",
             kinks: ["Pet Play", "Spanking", "Elite Orgies"],
             personality: ["Spoiled", "Submissive", "Exotic"],
             appearance: ["Fair skin", "Dark hair", "Petite"],
@@ -646,7 +761,6 @@
             measurements: { inches: "34B-25-35", cm: "86-64-89" },
             pussyType: "Waxed, Tight",
             sexualPreference: "Pansexual",
-            endurance: "Moderate Stamina",
             kinks: ["Cosplay Fetish", "Group Play", "Humiliation"],
             personality: ["Playful", "Submissive", "Creative"],
             appearance: ["Fair skin", "Blue and black hair", "Petite"],
@@ -666,7 +780,6 @@
             measurements: { inches: "34A-24-34", cm: "86-61-86" },
             pussyType: "Shaved, Plump",
             sexualPreference: "Heterosexual",
-            endurance: "High Stamina",
             kinks: ["Office Domination", "Degradation", "Foot Worship"],
             personality: ["Ambitious", "Submissive", "Charming"],
             appearance: ["Fair skin", "Red hair", "Skinny"],
@@ -686,7 +799,6 @@
             measurements: { inches: "36D-26-38", cm: "91-66-97" },
             pussyType: "Trimmed, Juicy",
             sexualPreference: "Bisexual",
-            endurance: "Extreme Stamina",
             kinks: ["Rough Sex", "Cum Play", "Degradation"],
             personality: ["Seductive", "Voluptuous", "Degradable"],
             appearance: ["Tanned skin", "Dark hair", "Curvy"],
@@ -706,7 +818,6 @@
             measurements: { inches: "32B-24-34", cm: "81-61-86" },
             pussyType: "Shaved, Delicate",
             sexualPreference: "Heterosexual",
-            endurance: "Moderate Stamina",
             kinks: ["Pet Play", "Domestic Servitude", "Light Bondage"],
             personality: ["Loyal", "Submissive", "Cute"],
             appearance: ["Fair skin", "Blonde hair with pink tips", "Petite"],
@@ -726,7 +837,6 @@
             measurements: { inches: "34C-26-36", cm: "86-66-91" },
             pussyType: "Waxed, Tight",
             sexualPreference: "Bisexual",
-            endurance: "High Stamina",
             kinks: ["Power Play", "Humiliation", "Group Domination"],
             personality: ["Dominant", "Powerful", "Seductive"],
             appearance: ["Fair skin", "Blonde hair", "Slender"],
@@ -748,122 +858,147 @@
         document.getElementById("collection-header").style.display = "none";
     }
 
-    const carouselContainer = document.getElementById("carousel-container");
-    const slideTemplate = document.getElementById("carousel-slide-template");
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-    heroSlides.forEach((slide, index) => {
-        const clone = slideTemplate.content.cloneNode(true);
-
-        clone.querySelector(".hero-title").textContent = slide.title;
-        clone.querySelector(".hero-description").textContent = slide.description;
-        clone.querySelector(".hero-button").textContent = slide.buttonText;
-        clone.querySelector(".hero-img").src = slide.image;
-        clone.querySelector(".hero-img").alt = slide.alt;
-        clone.querySelector(".content").style.backgroundImage = slide.background;
-
-        const featuresList = clone.querySelector(".hero-features");
-        slide.features.forEach(feature => {
-            const li = document.createElement("li");
-            li.textContent = feature;
-            featuresList.appendChild(li);
+        // Toggle menu
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            mobileMenu.classList.toggle('open');
         });
 
-        if (index === 0) {
-            clone.querySelector(".carousel-slide").classList.add("active");
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('open')) {
+                const isClickInside = mobileMenu.contains(e.target) || hamburger.contains(e.target);
+                if (!isClickInside) {
+                    mobileMenu.classList.remove('open');
+                }
+            }
+        });
+
+        // Optional: close menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        const carouselContainer = document.getElementById("carousel-container");
+        const slideTemplate = document.getElementById("carousel-slide-template");
+
+        heroSlides.forEach((slide, index) => {
+            const clone = slideTemplate.content.cloneNode(true);
+
+            clone.querySelector(".hero-title").textContent = slide.title;
+            clone.querySelector(".hero-description").textContent = slide.description;
+            clone.querySelector(".hero-button").textContent = slide.buttonText;
+            clone.querySelector(".hero-img").src = slide.image;
+            clone.querySelector(".hero-img").alt = slide.alt;
+            clone.querySelector(".content").style.backgroundImage = slide.background;
+
+            const featuresList = clone.querySelector(".hero-features");
+            slide.features.forEach(feature => {
+                const li = document.createElement("li");
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+
+            if (index === 0) {
+                clone.querySelector(".carousel-slide").classList.add("active");
+            }
+
+            carouselContainer.appendChild(clone);
+        });
+
+        const productContainer = document.getElementById("product-container");
+        const productTemplate = document.getElementById("product-card-template");
+
+        products.forEach(product => {
+            const clone = productTemplate.content.cloneNode(true);
+
+            clone.querySelector(".profile-img").src = product.image;
+            clone.querySelector(".profile-img").alt = `${product.name} Skinsuit`;
+
+            clone.querySelector(".flag-icon").src = product.flag;
+            clone.querySelector(".flag-icon").alt = `${product.ethnicity} Flag`;
+
+            clone.querySelector(".product-card-title").textContent = product.name;
+            clone.querySelector(".age").innerHTML = `<i class="fas fa-user"></i> Age: ${product.age}`;
+            clone.querySelector(".ethnicity").innerHTML = `<i class="fas fa-globe"></i> Ethnicity: ${product.ethnicity}`;
+            clone.querySelector(".background").innerHTML = `<i class="fas fa-briefcase"></i> Background: ${product.background}`;
+            clone.querySelector(".height").innerHTML = `<i class="fas fa-ruler-vertical"></i> Height: ${product.height.feet} (${product.height.meters})`;
+            clone.querySelector(".weight").innerHTML = `<i class="fas fa-weight"></i> Weight: ${product.weight.pounds} (${product.weight.kilograms})`;
+            clone.querySelector(".measurements").innerHTML = `<i class="fas fa-ruler-combined"></i> Measurements: ${product.measurements.inches} (${product.measurements.cm} cm)`;
+            clone.querySelector(".pussy-type").innerHTML = `<i class="fas fa-venus"></i> Pussy Type: ${product.pussyType}`;
+            clone.querySelector(".sexual-preference").innerHTML = `<i class="fas fa-heart"></i> Sexual Preference: ${product.sexualPreference}`;
+            clone.querySelector(".owners").innerHTML = `<i class="fas fa-history"></i> Previous Owners: ${product.previousOwners}`;
+            clone.querySelector(".price").innerHTML = `<i class="fas fa-dollar-sign"></i> Price: ${product.price}`;
+            clone.querySelector(".product-card-description").textContent = product.description;
+
+            const fetishTagsContainer = clone.querySelector(".fetish-tags");
+            product.kinks.forEach(kink => {
+                const tagElement = document.createElement("span");
+                tagElement.className = "tag";
+                tagElement.textContent = kink;
+                fetishTagsContainer.appendChild(tagElement);
+            });
+
+            const tagsContainer = clone.querySelector(".tags");
+            product.personality.forEach(tag => {
+                const tagElement = document.createElement("span");
+                tagElement.className = "tag";
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+
+            productContainer.appendChild(clone);
+        });
+
+        // Collapsible panel functionality
+        document.querySelectorAll('.panel-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const details = header.nextElementSibling;
+                const isActive = details.classList.contains('active');
+                details.classList.toggle('active', !isActive);
+                header.classList.toggle('active', !isActive);
+            });
+        });
+
+        // Animations
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
         }
 
-        carouselContainer.appendChild(clone);
-    });
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
 
-    const productContainer = document.getElementById("product-container");
-    const productTemplate = document.getElementById("product-card-template");
+        setInterval(nextSlide, 5000);
 
-    products.forEach(product => {
-        const clone = productTemplate.content.cloneNode(true);
+        document.querySelectorAll('.carousel-slide .content').forEach((heroContent) => {
+            heroContent.addEventListener('mousemove', (e) => {
+                const rect = heroContent.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xPercent = (x / rect.width) * 100;
+                const yPercent = (y / rect.height) * 100;
+                const moveX = (xPercent - 50) * 0.1;
+                const moveY = (yPercent - 50) * 0.1;
+                heroContent.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
+            });
 
-        clone.querySelector(".profile-img").src = product.image;
-        clone.querySelector(".profile-img").alt = `${product.name} Skinsuit`;
-
-        clone.querySelector(".flag-icon").src = product.flag;
-        clone.querySelector(".flag-icon").alt = `${product.ethnicity} Flag`;
-
-        clone.querySelector(".product-card-title").textContent = product.name;
-        clone.querySelector(".age").innerHTML = `<i class="fas fa-user"></i> Age: ${product.age}`;
-        clone.querySelector(".ethnicity").innerHTML = `<i class="fas fa-globe"></i> Ethnicity: ${product.ethnicity}`;
-        clone.querySelector(".background").innerHTML = `<i class="fas fa-briefcase"></i> Background: ${product.background}`;
-        clone.querySelector(".height").innerHTML = `<i class="fas fa-ruler-vertical"></i> Height: ${product.height.feet} (${product.height.meters})`;
-        clone.querySelector(".weight").innerHTML = `<i class="fas fa-weight"></i> Weight: ${product.weight.pounds} (${product.weight.kilograms})`;
-        clone.querySelector(".measurements").innerHTML = `<i class="fas fa-ruler-combined"></i> Measurements: ${product.measurements.inches} (${product.measurements.cm} cm)`;
-        clone.querySelector(".pussy-type").innerHTML = `<i class="fas fa-venus"></i> Pussy Type: ${product.pussyType}`;
-        clone.querySelector(".sexual-preference").innerHTML = `<i class="fas fa-heart"></i> Sexual Preference: ${product.sexualPreference}`;
-        clone.querySelector(".endurance").innerHTML = `<i class="fas fa-bolt"></i> Endurance: ${product.endurance}`;
-        clone.querySelector(".owners").innerHTML = `<i class="fas fa-history"></i> Previous Owners: ${product.previousOwners}`;
-        clone.querySelector(".price").innerHTML = `<i class="fas fa-dollar-sign"></i> Price: ${product.price}`;
-        clone.querySelector(".product-card-description").textContent = product.description;
-
-        const fetishTagsContainer = clone.querySelector(".fetish-tags");
-        product.kinks.forEach(kink => {
-            const tagElement = document.createElement("span");
-            tagElement.className = "tag";
-            tagElement.textContent = kink;
-            fetishTagsContainer.appendChild(tagElement);
+            heroContent.addEventListener('mouseleave', () => {
+                heroContent.style.backgroundPosition = 'center center';
+            });
         });
-
-        const tagsContainer = clone.querySelector(".tags");
-        product.personality.forEach(tag => {
-            const tagElement = document.createElement("span");
-            tagElement.className = "tag";
-            tagElement.textContent = tag;
-            tagsContainer.appendChild(tagElement);
-        });
-
-        productContainer.appendChild(clone);
-    });
-
-    // Collapsible panel functionality
-    document.querySelectorAll('.panel-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const details = header.nextElementSibling;
-            const isActive = details.classList.contains('active');
-            details.classList.toggle('active', !isActive);
-            header.classList.toggle('active', !isActive);
-        });
-    });
-
-    // Animations
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    setInterval(nextSlide, 5000);
-
-    document.querySelectorAll('.carousel-slide .content').forEach((heroContent) => {
-        heroContent.addEventListener('mousemove', (e) => {
-            const rect = heroContent.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const xPercent = (x / rect.width) * 100;
-            const yPercent = (y / rect.height) * 100;
-            const moveX = (xPercent - 50) * 0.1;
-            const moveY = (yPercent - 50) * 0.1;
-            heroContent.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
-        });
-
-        heroContent.addEventListener('mouseleave', () => {
-            heroContent.style.backgroundPosition = 'center center';
-        });
-    });
-</script>
+    </script>
 </body>
 
 </html>
