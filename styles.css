@@ -415,6 +415,7 @@ body {
         height: auto;
         background-size: cover;
         padding: 20px;
+        border-radius: 0;
         padding-bottom: 0;
     }
 
@@ -446,6 +447,10 @@ body {
         max-height: 300px;
         object-fit: contain;
         border-radius: 20px;
+    }
+
+    .carousel {
+        border-radius: 0;
     }
 }
 
